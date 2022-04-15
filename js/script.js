@@ -67,7 +67,7 @@ function generateEquation() {
   let num2 = Math.floor(Math.random() * 21);
 
   const operation = document.querySelector(".menu__link._active");
-  console.log(operation.dataset.operator);
+
   switch (operation.dataset.operator) {
     case "addition":
       answer = num1 + num2;
@@ -85,7 +85,7 @@ function generateEquation() {
       document.querySelector("#operation").textContent = "*";
       break;
     case "division":
-      while(num1 % num2 !== 0){
+      while (num1 % num2 !== 0) {
         num1 = Math.floor(Math.random() * 21);
         num2 = Math.floor(Math.random() * 21);
       }
@@ -96,22 +96,20 @@ function generateEquation() {
 
   let wrongAnswer1 = Math.floor(Math.random() * 21);
   let wrongAnswer2 = Math.floor(Math.random() * 21);
+  if (operation.dataset.operator === "multiplication") {
+    wrongAnswer1 *= Math.floor(Math.random() * 21);
+    wrongAnswer2 *= Math.floor(Math.random() * 21);
+  }
 
-  if (wrongAnswer1 === answer) {
-    while (wrongAnswer1 === answer) {
+  if (wrongAnswer1 === answer || wrongAnswer1 === wrongAnswer2) {
+    while (wrongAnswer1 === answer || wrongAnswer1 === wrongAnswer2) {
       wrongAnswer1 = Math.floor(Math.random() * 21);
     }
   }
 
-  if (wrongAnswer2 === answer) {
-    while (wrongAnswer2 === answer) {
+  if (wrongAnswer2 === answer || wrongAnswer2 === wrongAnswer1) {
+    while (wrongAnswer2 === answer || wrongAnswer2 === wrongAnswer1) {
       wrongAnswer2 = Math.floor(Math.random() * 11);
-    }
-  }
-
-  if (wrongAnswer1 === wrongAnswer2) {
-    while (wrongAnswer1 === wrongAnswer2) {
-      wrongAnswer1 = Math.floor(Math.random() * 11);
     }
   }
 
