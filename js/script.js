@@ -33,8 +33,8 @@ const option1 = document.querySelector("#option1");
 const option2 = document.querySelector("#option2");
 const option3 = document.querySelector("#option3");
 
-const rightAnswer = document.querySelector("#right");
-const wrongAnswer = document.querySelector("#wrong");
+const rightAnswer = document.querySelector("#right span");
+const wrongAnswer = document.querySelector("#wrong span");
 
 let rightAnswerCounter = 0;
 let wrongAnswerCounter = 0;
@@ -42,13 +42,27 @@ let wrongAnswerCounter = 0;
 const options = document.querySelectorAll(".option");
 options.forEach((option) => {
   option.addEventListener("click", () => {
+
     if (+option.textContent === answer) {
       rightAnswerCounter++;
       rightAnswer.textContent = rightAnswerCounter;
+
+      document.querySelector(".operation__right").style.visibility = "visible";
+      document.querySelector(".operation__right").style.top = "10px";
+      setTimeout(() => {
+        document.querySelector(".operation__right").style.visibility = "hidden";
+        document.querySelector(".operation__right").style.top = "40px";
+      }, 800);
       generateEquation();
     } else {
       wrongAnswerCounter++;
       wrongAnswer.textContent = wrongAnswerCounter;
+      document.querySelector(".operation__wrong").style.visibility = "visible";
+      document.querySelector(".operation__wrong").style.top = "40px";
+      setTimeout(() => {
+        document.querySelector(".operation__wrong").style.visibility = "hidden";
+        document.querySelector(".operation__wrong").style.top = "10px";
+      }, 800);
     }
   });
 });

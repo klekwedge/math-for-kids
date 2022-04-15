@@ -403,7 +403,6 @@ body {
   border-radius: 5px;
   font-size: 60px;
   color: white;
-  cursor: pointer;
 }
 
 .operation__score li:nth-child(1) {
@@ -413,33 +412,42 @@ body {
   transition: 0.4s;
 }
 
-.operation__score li:nth-child(1):hover {
-  color: #20a8cc;
-  background-color: white;
-}
-
 .operation__score li:nth-child(2) {
-  background-color: #52CC20;
+  position: relative;
+  background-color: #52cc20;
   padding: 40px;
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }
 
-.operation__score li:nth-child(2):hover {
-  color: #52CC20;
-  background-color: white;
-}
-
 .operation__score li:nth-child(3) {
+  position: relative;
   background-color: #ff5a49;
   padding: 40px;
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }
 
-.operation__score li:nth-child(3):hover {
-  color: #ff5a49;
-  background-color: white;
+.operation__right {
+  position: absolute;
+  top: 40px;
+  right: 10px;
+  visibility: hidden;
+  color: #ffffff;
+  font-size: 30px;
+  -webkit-transition: top 0.8s;
+  transition: top 0.8s;
+}
+
+.operation__wrong {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  visibility: hidden;
+  color: #ffffff;
+  font-size: 30px;
+  -webkit-transition: top 0.8s;
+  transition: top 0.8s;
 }
 
 .operation__equation {
