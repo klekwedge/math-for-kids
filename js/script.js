@@ -33,14 +33,22 @@ const option1 = document.querySelector("#option1");
 const option2 = document.querySelector("#option2");
 const option3 = document.querySelector("#option3");
 
+const rightAnswer = document.querySelector("#right");
+const wrongAnswer = document.querySelector("#wrong");
+
+let rightAnswerCounter = 0;
+let wrongAnswerCounter = 0;
+
 const options = document.querySelectorAll(".option");
 options.forEach((option) => {
   option.addEventListener("click", () => {
     if (+option.textContent === answer) {
-      console.log("GOOD");
+      rightAnswerCounter++;
+      rightAnswer.textContent = rightAnswerCounter;
       generateEquation();
     } else {
-      console.log("BAD");
+      wrongAnswerCounter++;
+      wrongAnswer.textContent = wrongAnswerCounter;
     }
   });
 });
