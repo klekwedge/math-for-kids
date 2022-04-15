@@ -47,29 +47,71 @@ options.forEach((option) => {
 
 let answer = 0;
 generateEquation();
+
+const operations = document.querySelectorAll(".menu__link");
+
+operations.forEach((operation) => {
+  operation.addEventListener("click", () => {
+    if (!operation.classList.contains("_active")) {
+      operations.forEach((operation) => {
+        operation.classList.remove("_active");
+      });
+      operation.classList.add("_active");
+      generateEquation();
+    }
+  });
+});
+
 function generateEquation() {
-  let num1 = Math.floor(Math.random() * 16);
-  let num2 = Math.floor(Math.random() * 16);
-  answer = num1 + num2;
+  let num1 = Math.floor(Math.random() * 21);
+  let num2 = Math.floor(Math.random() * 21);
 
-  let wrongAnswer1 = Math.floor(Math.random() * 16);
-  let wrongAnswer2 = Math.floor(Math.random() * 16);
+  const operation = document.querySelector(".menu__link._active");
+  console.log(operation.dataset.operator);
+  switch (operation.dataset.operator) {
+    case "addition":
+      answer = num1 + num2;
+      document.querySelector("#operation").textContent = "+";
+      break;
+    case "subtraction":
+      if (num1 < num2) {
+        [num1, num2] = [num2, num1];
+      }
+      answer = num1 - num2;
+      document.querySelector("#operation").textContent = "-";
+      break;
+    case "multiplication":
+      answer = num1 * num2;
+      document.querySelector("#operation").textContent = "*";
+      break;
+    case "division":
+      while(num1 % num2 !== 0){
+        num1 = Math.floor(Math.random() * 21);
+        num2 = Math.floor(Math.random() * 21);
+      }
+      answer = num1 / num2;
+      document.querySelector("#operation").textContent = ":";
+      break;
+  }
 
-  if (wrongAnswer1 === answer ) {
+  let wrongAnswer1 = Math.floor(Math.random() * 21);
+  let wrongAnswer2 = Math.floor(Math.random() * 21);
+
+  if (wrongAnswer1 === answer) {
     while (wrongAnswer1 === answer) {
-      wrongAnswer1 = Math.floor(Math.random() * 16);
+      wrongAnswer1 = Math.floor(Math.random() * 21);
     }
   }
 
-  if(wrongAnswer2 === answer){
+  if (wrongAnswer2 === answer) {
     while (wrongAnswer2 === answer) {
-      wrongAnswer2 = Math.floor(Math.random() * 16);
+      wrongAnswer2 = Math.floor(Math.random() * 11);
     }
   }
 
   if (wrongAnswer1 === wrongAnswer2) {
-    while (wrongAnswer1 === wrongAnswer2 ) {
-      wrongAnswer1 = Math.floor(Math.random() * 16);
+    while (wrongAnswer1 === wrongAnswer2) {
+      wrongAnswer1 = Math.floor(Math.random() * 11);
     }
   }
 
@@ -82,7 +124,7 @@ function generateEquation() {
 
   document.querySelector("#num1").textContent = num1;
   document.querySelector("#num2").textContent = num2;
-  console.log(allAnswers);
+
   option1.textContent = allAnswers[0];
   option2.textContent = allAnswers[1];
   option3.textContent = allAnswers[2];
